@@ -1,4 +1,4 @@
-# Rails DeCal Fall 2017 Homework 2
+# Rails DeCal Spring 2018 Homework 2
 
 ## Introduction
 Hey there! Welcome to homework 2 of the Rails DeCal. By this week, the course will have covered routes, simple ruby syntax, and basic CRUD statements.
@@ -12,8 +12,8 @@ To start everything off, fork this repository - there should be a fork button on
 
 <b>After you fork</b>, run these commands to clone your newly forked repository:
 ```
-git clone https://github.com/your_username/fa17-hw2
-cd fa17-hw2
+git clone https://github.com/your_username/sp18-hw2
+cd sp18-hw2
 ```
 
 Next, install all the gems (Rails libraries) necessary by running:
@@ -53,7 +53,7 @@ Don't worry if this is confusing to you. We'll be covering forms in the future. 
 
 To fix the errors, route a path in the routes.rb file so that a POST request to `localhost:3000` (also known `'/'` or `root`) routes to the `stringify` method in `pages_controller.rb`. Be sure to give set the path prefix to `stringify` so we can reference it with the name  `stringify_path`
 
-Now that we've gone through that hassle, we now face our second problem. If you try to submit the form, you get a views error message (missing template pages/stringify)!
+Now that we've gone through that hassle, we now face our second problem. If you try to submit the form, you get a views error message (missing template pages/stringify) if you check terminal window where you are running your rails server!
 
 To fix this, update `app/controllers/concerns/stringify` such that the `what_am_i` method returns "You are nothing!" if `@name` or `@adjective` are blank, but returns "<em>your_name</em> is so <em>your_adjective</em>" if `@name` and `@adjective` are not blank.
 
@@ -67,30 +67,13 @@ Once you're done, create a `stringify.html.erb` view (where should this file go?
 
 to the view. Now when you submit the form, nothing should error and you should see the result of your `what_am_i` method.
 
+Hint: The associated view file of a controller method (ex: 'pages#home') should be named 'home.html.erb' and placed in the `views/pages` directory.
 
 ### Question 2
-If you take a look in the `app/controller/concerns/` directory, you'll see that we've defined a class for you called `Foobar`. This is where we'll be spending some time to practice Ruby!
-
-If you take a look at `pages_controller.rb`, we have two commented lines of code:
-
-```
-# foo = Foobar.new "baz"
-# @baz = foo.bar :cat, sat: :dat, dat: :sat
-```
-
-Write an `initialize` method and an instance method `bar` in `Foobar` so that when you uncomment the code in `pages_controller.rb`, the home page will render the string `"catbazdat"` under `"Your result"`. Do not hard code any strings; use the values passed into the `bar` method and the initializer.
-
-Uncomment the code in `pages_controller.rb` and validate your changes.
-
-**Hint 1**: You may lookup how you can use the symbol method `to_s`
-
-**Hint 2**: the `bar` method will take in two arguments/parameters (one is a hash)
-
-### Question 3
 
 Now we're going to look at more routing + creating classes!
 
-If you look at the Question 3 section on the home page, you'll see that we have another form! However, if you submit it you'll get an error message telling you that no route matches the request.
+If you look at the Question 2 section on the home page, you'll see that we have another form! However, if you submit it you'll get an error message telling you that no route matches the request.
 
 Let's fix this bug.
 
@@ -104,20 +87,21 @@ The `Person` class should have the following methods:
     - Hint: the string `to_i` method might come in handy here
 - `nickname`: returns the nickname
 
-Submit the Question 3 form (which will direct you to `localhost:3000/age`) and validate you did this correctly.
+Submit the Question 2 form (which will direct you to `localhost:3000/age`) and validate you did this correctly.
 
 Note: don't worry about blank form edge cases (which we practiced handling in Q1) and formatting.
 
-### Question 4
+### Question 3
 Let's practice some HTML/CSS:
 
 Create a view that can be seen if you go to `localhost:3000/me`. Just a friendly reminder, to do this you'll have to create a route, a controller action, and a view.
 
-In this view, render your name, where you're from, your year (freshman/sophomore/junior/senior/etc), a fun fact, and what you're most excited about in this class
+In this view, render your name, where you're from, your year (freshman/sophomore/junior/senior/etc), a fun fact, and what you're most excited about in this class. Try to have fun with this part! :)
 
-**Bonus**: add and render a picture of yourself (upload your file into `assets/images`)
+**Bonus**: add and render a picture of yourself (upload your file into `assets/images`). Check out the rails `image_tag` helper.
 
 **Bonus 2**: use CSS to style your text (add background colors, underline it, anything you want!)
+
 
 Go to `localhost:3000/me` and validate you did this correctly.
 
