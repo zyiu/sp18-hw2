@@ -35,9 +35,42 @@ If you take a look at a couple of the classes in the `app/controllers/concerns/`
 
 `initialize` is similar to Python's `__init__` method and is called every time you create a new object. If you do not define an `initialize` method, Ruby will just assume that your class has an empty initializor.
 
-`attr_accessor` is used to define instance variables so that you can have both read access (via `your_class.instance_variable`) and edit access (via `your_class.instance_variable = some_value`). Ruby allows you to forbid edit or read access using `attr_readable` and `attr_writer`, respectively.
+`attr_accessor` is used to define instance variables so that you can have both read access (via `your_class.instance_variable`) and edit access (via `your_class.instance_variable = some_value`). By default, instance variables are NOT accessible (getting or setting) outside of the class so you have to declare `attr_accessor` in order to enable this functionality. You can also be more specific and make some attributes readable (`attr_readable`) and some settable (`attr_writer`).
 
 Also, you'll see a lot of `<%= some_variable %>`. This is embedded ruby, which we'll be covering next week.
+
+## A Note on Views
+
+In lecture we saw how the router helped our web application translate HTTP requests into controller actions. If you remember the MVC diagram, the controller's final step is to return a **view** back to the client, so we can see the results. You will need to have a basic understanding of how this works in order to complete the homework problems.
+
+For example, we have the following line of code in `routes.rb`:
+
+```ruby
+get 'users', to: 'users#index'
+```
+
+When this HTTP request is received, it will be handled by the `UsersController`'s `index` action:
+
+```ruby
+class UsersController < ApplicationController
+  def index
+    @users = User.all
+    render :index
+  end
+end
+```
+
+Take special note of the line `render :index`, and recall that Rails strives to be as minimally redundant as possible. This line looks through your `users` view folder (`app/views/users`) for a file called `index.html.erb` and then renders that. **The naming is essential.** How does it know to look through only the `users` view folder? Because this controller is **named** `UsersController`. If you misspell it or even use the singular form `UserController` you may face some nasty little bugs.
+
+If that wasn't enough, the line `render :index` can actually be *completely omitted*:
+
+```ruby
+def index
+  @users = User.all
+end
+```
+
+Since our method is named `index`, the default behavior is the automatically render the view called `index.html.erb`. Remember this well because you will very rarely see the explicit `render` statement again.
 
 ## Alright, lets get crackin':
 
