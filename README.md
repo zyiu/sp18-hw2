@@ -70,7 +70,7 @@ def index
 end
 ```
 
-Since our method is named `index`, the default behavior is the automatically render the view called `index.html.erb`. Remember this well because you will very rarely see the explicit `render` statement again.
+Since our method is named `index`, the default behavior is to automatically render the view called `index.html.erb`. Remember this well because you will very rarely see the explicit `render` statement again.
 
 ## Alright, lets get crackin':
 
